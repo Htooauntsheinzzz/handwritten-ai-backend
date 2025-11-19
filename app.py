@@ -139,10 +139,8 @@ def preprocess_image(image_data):
         # Reshape for model input
         image_array = image_array.reshape(1, 28, 28, 1)
 
-        # Debug: Save preprocessed image to see what model receives
-        debug_img = (image_array[0, :, :, 0] * 255).astype(np.uint8)
-        cv2.imwrite('debug_preprocessed.png', debug_img)
-        print(f"Debug: Image saved. Min={image_array.min():.3f}, Max={image_array.max():.3f}, Mean={image_array.mean():.3f}")
+        # Debug: Log preprocessing stats (don't write file in production)
+        print(f"Debug: Min={image_array.min():.3f}, Max={image_array.max():.3f}, Mean={image_array.mean():.3f}")
 
         return image_array
 
