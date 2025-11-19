@@ -1,0 +1,34 @@
+# Virtual environment
+venv/
+env/
+.env
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Model files (optional - can be large)
+# Uncomment if you don't want to push the model
+# model/*.h5
+
+# Debug files
+debug_preprocessed.png
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Distribution
+dist/
+build/
+*.egg-info/

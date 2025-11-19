@@ -1,0 +1,29 @@
+# Handwritten Digit Recognition - Python Dependencies (Updated)
+# Author: Htoo Aunt
+# Compatible with modern Python versions
+
+# Deep Learning Framework - Use latest stable version
+tensorflow>=2.16.0
+keras>=3.0.0
+
+# Web Framework
+flask>=3.0.0
+flask-cors>=4.0.0
+
+# Data Processing
+numpy>=1.24.0
+pandas>=2.0.0
+
+# Image Processing
+Pillow>=10.0.0
+opencv-python>=4.8.0
+
+# Visualization
+matplotlib>=3.8.0
+seaborn>=0.13.0
+
+# Machine Learning Utilities
+scikit-learn>=1.3.0
+
+# Additional Utilities
+python-dotenv>=1.0.0
