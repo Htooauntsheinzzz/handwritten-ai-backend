@@ -16,7 +16,7 @@ import io
 import os
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})  # Allow all origins for now
 
 # Model configuration
 MODEL_PATH = 'model/digit_model.h5'
