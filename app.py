@@ -14,7 +14,6 @@ import keras
 from PIL import Image
 import io
 import os
-from tensorflow._api.v2.raw_ops import Imag
 
 app = Flask(__name__)
 CORS(app)
