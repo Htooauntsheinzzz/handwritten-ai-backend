@@ -36,7 +36,7 @@ CONFIG = {
     'mnist_samples_per_digit': 1000, # How many MNIST samples to include per digit (0 = all)
     'use_transfer_learning': False,  # Set to True to fine-tune existing model
     'existing_model_path': 'model/digit_model.h5',
-    'output_model_name': 'model/custom_digit_model.h5',
+    'output_model_name': 'model/digit_model.h5',  # Changed to match Flask app
     'epochs': 20,
     'batch_size': 32,
     'learning_rate': 0.001,

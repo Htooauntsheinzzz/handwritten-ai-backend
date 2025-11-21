@@ -128,10 +128,39 @@ def preprocess_image(image_data):
 
             image_array = canvas
 
+        # Adaptive stroke thickness enhancement
+        # Detect if strokes are thin and need thickening
+        stroke_pixels = np.sum(image_array > 0)
+        total_pixels = image_array.size
+        stroke_density = stroke_pixels / total_pixels
+
+        # Calculate average stroke intensity
+        if stroke_pixels > 0:
+            avg_stroke_intensity = np.mean(image_array[image_array > 0])
+        else:
+            avg_stroke_intensity = 0
+
+        # Apply dilation only if strokes are thin (low density or low intensity)
+        # Thin strokes typically have density < 0.15 or low average intensity
+        if stroke_density < 0.20 or avg_stroke_intensity < 180:
+            # Thin strokes detected - apply dilation to preserve detail
+            kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (2, 2))
+            image_array = cv2.dilate(image_array, kernel, iterations=1)
+
         # Resize to 28x28 using anti-aliasing
         image_pil = Image.fromarray(image_array)
         image_pil = image_pil.resize((28, 28), Image.LANCZOS)
         image_array = np.array(image_pil)
+
+        # Apply slight Gaussian blur to smooth pixelation (like MNIST)
+        image_array = cv2.GaussianBlur(image_array, (3, 3), 0)
+
+        # Enhance contrast to ensure strokes are visible
+        # Apply histogram normalization if the image is too faint
+        if np.max(image_array) > 0:
+            # Stretch histogram to use full range
+            image_array = ((image_array - np.min(image_array)) /
+                          (np.max(image_array) - np.min(image_array)) * 255).astype(np.uint8)
 
         # Normalize to 0-1 range
         image_array = image_array.astype('float32') / 255.0
